@@ -1,0 +1,38 @@
+# ===================================================
+# 派谱 / PairPulse 配置文件
+# 你只需要改这个文件，不用碰任何 Python 代码
+# ===================================================
+
+# 【必填】数据文件路径
+data_file: "data/sample_full.xlsx"
+data_sheet: 0
+
+# 【必填】Excel 列名映射 —— 左边是标准名，右边填你 Excel 里实际的列名
+columns:
+  order_id: "订单编号"           # 必填 - 每笔订单的唯一标识
+  product_name: "商品名称"       # 必填 - 商品名称（请统一写法）
+  product_price: "商品单价"      # 推荐 - 无客户ID时需要用金额分群
+  category: "商品类目"           # 可选 - 有类目可按品类拆分，更精准
+  customer_id: ""               # 可选 - 有客户ID可按客户分群；留空则自动用订单金额分群
+  quantity: "购买数量"           # 可选 - 无此列默认填 1
+  date: "下单日期"               # 可选
+
+# 【算法参数】通常不用改，数据量过大时可调高 min_support
+algo:
+  min_support: 0.01             # 最小支持度（1% 订单包含此组合才算）
+  min_confidence: 0.15          # 最小置信度（买A后有15%的人买B才算）
+  min_lift: 1.2                 # 最小提升度（比随机高20%才算真关联）
+
+# 【客户分群】仅在没有客户ID时生效
+segmentation:
+  enabled: true                 # 是否启用分群
+  high_ratio: 0.2               # 高客单组占比
+  mid_ratio: 0.5                # 中客单组占比
+  # 低客单组 = 1 - 0.2 - 0.5 = 30%
+
+# 【输出控制】
+output:
+  top_rules_per_group: 20       # 每组输出前 N 条规则
+  include_charts: true          # 是否生成图表
+  include_insights: true        # 是否生成业务解读
+  output_dir: "output"

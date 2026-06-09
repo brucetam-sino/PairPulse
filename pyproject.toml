@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pairpulse"
+version = "0.1.0"
+description = "购物篮关联分析工具 - 输入 Excel 订单数据，自动输出商品关联规则 + 业务策略建议"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "BruceTam", email = "tanbifan@126.com"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "pandas>=2.0",
+    "openpyxl>=3.0",
+    "xlrd>=2.0",
+    "mlxtend>=0.22",
+    "matplotlib>=3.5",
+    "networkx>=3.0",
+    "pyyaml>=6.0",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+pairpulse = "pairpulse.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/Brucetam/PairPulse"
+Issues = "https://github.com/Brucetam/PairPulse/issues"
