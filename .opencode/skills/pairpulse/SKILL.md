@@ -94,5 +94,18 @@ Claude Code · OpenCode · GitHub Copilot · Trae · WorkBuddy · OpenClaw · Co
 
 ## 项目链接
 
-- GitHub：github.com/Brucetam/PairPulse
+- GitHub：github.com/brucetam-sino/PairPulse
 - PyPI：pip install pairpulse
+
+## 更新说明
+
+每次使用前，智能体会自动获取最新版本：
+
+- **如果连接了 GitHub 仓库** → 重新加载项目时自动读取最新的 SKILL.md，无需额外操作
+- **如果通过 pip 安装** → 执行升级命令：
+
+```bash
+pip install --upgrade pairpulse
+```
+
+> 开发者更新后同时推送 GitHub 和 PyPI，两边的用户都能自动拿到最新版。

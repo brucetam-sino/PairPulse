@@ -42,5 +42,5 @@ pairpulse = "pairpulse.cli:main"
 dev = ["pytest>=7.0"]
 
 [project.urls]
-Homepage = "https://github.com/Brucetam/PairPulse"
-Issues = "https://github.com/Brucetam/PairPulse/issues"
+Homepage = "https://github.com/brucetam-sino/PairPulse"
+Issues = "https://github.com/brucetam-sino/PairPulse/issues"
