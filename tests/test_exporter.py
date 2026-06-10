@@ -13,6 +13,7 @@ from pairpulse.exporter import (
 class TestExportJson:
     def test_basic_export(self):
         results = {
+            "total_rows": 1000,
             "total_orders": 1000,
             "valid_orders": 800,
             "total_rules": 10,
@@ -34,12 +35,14 @@ class TestExportJson:
         assert os.path.exists(path)
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
-        assert data["summary"]["total_orders"] == 1000
+        assert data["summary"]["total_rows"] == 1000
+        assert data["summary"]["total_orders"] == 800
         assert len(data["rules_by_group"]) == 1
         assert "insights" in data
 
     def test_export_with_insights_disabled(self):
         results = {
+            "total_rows": 100,
             "total_orders": 100,
             "valid_orders": 80,
             "total_rules": 5,
@@ -64,7 +67,7 @@ class TestExportJson:
 
     def test_empty_rules(self):
         results = {
-            "total_orders": 0, "valid_orders": 0,
+            "total_rows": 0, "total_orders": 0, "valid_orders": 0,
             "total_rules": 0, "groups": 0,
             "errors": [], "warnings": [],
             "rules_by_group": {},
@@ -97,7 +100,7 @@ class TestExportExcel:
 
     def test_empty_groups(self):
         results = {
-            "total_orders": 0, "valid_orders": 0,
+            "total_rows": 0, "total_orders": 0, "valid_orders": 0,
             "total_rules": 0, "groups": 0,
             "rules_by_group": {},
         }

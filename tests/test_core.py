@@ -114,6 +114,7 @@ class TestPairPulseClean:
         pp = PairPulse(config_path=config_path)
         pp.load()
         pp.clean()
+        assert pp.results["total_rows"] == 6
         assert pp.results["total_orders"] == 6
 
 

@@ -59,7 +59,7 @@ pairpulse run --mapping output/标准化映射表.xlsx
 
 ```json
 {
-  "summary": { "total_orders": 42368, "valid_orders": 38920, "total_rules": 156 },
+  "summary": { "total_rows": 42368, "total_orders": 38920, "total_rules": 156 },
   "rules_by_group": {
     "high_value": [
       { "antecedent": "iPhone 15", "consequent": "手机壳",

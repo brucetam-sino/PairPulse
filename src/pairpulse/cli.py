@@ -16,10 +16,12 @@ def cmd_run(args):
         import yaml
         import shutil
         from pathlib import Path
+        from pairpulse.errors import ConfigError, ERROR_TEMPLATES
 
         src_config = Path(config_path)
-        if src_config.exists():
-            shutil.copy(src_config, config_path_tmp)
+        if not src_config.exists():
+            raise ConfigError(ERROR_TEMPLATES["invalid_config"]("config_path", f"配置文件不存在: {config_path}"))
+        shutil.copy(src_config, config_path_tmp)
 
         with open(config_path, "r", encoding="utf-8") as f:
             config = yaml.safe_load(f) or {}
@@ -52,8 +54,10 @@ def cmd_standardize(args):
     if data_file:
         config_path_tmp = f"{config_path}.tmp"
         src_config = Path(config_path)
-        if src_config.exists():
-            shutil.copy(src_config, config_path_tmp)
+        if not src_config.exists():
+            from pairpulse.errors import ConfigError, ERROR_TEMPLATES
+            raise ConfigError(ERROR_TEMPLATES["invalid_config"]("config_path", f"配置文件不存在: {config_path}"))
+        shutil.copy(src_config, config_path_tmp)
         with open(config_path, "r", encoding="utf-8") as f:
             config = yaml.safe_load(f) or {}
         config["data_file"] = data_file
@@ -68,7 +72,8 @@ def cmd_standardize(args):
     names = pp.df[pp.product_col].dropna().unique()
     mapping = suggest_standardization(list(names), threshold=0.75)
 
-    output_path = args.output or "output/standardization_mapping.xlsx"
+    default_output_dir = pp.config.get("output", {}).get("output_dir", "output")
+    output_path = args.output or os.path.join(default_output_dir, "standardization_mapping.xlsx")
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     save_mapping_table(mapping, output_path)
 

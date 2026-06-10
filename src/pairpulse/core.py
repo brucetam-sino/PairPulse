@@ -192,6 +192,7 @@ class PairPulse:
         if unique_orders < 500:
             self._warn(f"有效多件订单仅 {unique_orders} 单，可能无法生成有意义的关联规则")
 
+        self.results["total_rows"] = stats["initial"]
         self.results["total_orders"] = stats["initial"]
         self.results["valid_orders"] = unique_orders
 

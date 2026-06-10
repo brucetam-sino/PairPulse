@@ -50,8 +50,8 @@ def export_json(results, output_dir, filename="pairpulse_result.json", include_i
     output = {
         "version": "0.1.0",
         "summary": {
-            "total_orders": results.get("total_orders", 0),
-            "valid_orders": results.get("valid_orders", 0),
+            "total_rows": results.get("total_rows", results.get("total_orders", 0)),
+            "total_orders": results.get("valid_orders", 0),
             "total_rules": results.get("total_rules", 0),
             "groups": results.get("groups", 0),
         },
@@ -99,9 +99,9 @@ def export_excel(results, output_dir, filename="pairpulse_report.xlsx"):
 
     with pd.ExcelWriter(out_path, engine="openpyxl") as writer:
         summary_data = {
-            "指标": ["总订单数", "有效订单数", "关联规则总数", "分析分组数"],
+            "指标": ["原始数据行数", "有效订单数", "关联规则总数", "分析分组数"],
             "值": [
-                results.get("total_orders", 0),
+                results.get("total_rows", results.get("total_orders", 0)),
                 results.get("valid_orders", 0),
                 results.get("total_rules", 0),
                 results.get("groups", 0),
