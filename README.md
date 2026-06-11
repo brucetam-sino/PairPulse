@@ -164,34 +164,6 @@ pip install -e .
 pairpulse run --input /path/to/data.xlsx
 ```
 
----
-
-## 发布新版本（作者参考）
-
-每次更新代码后，按以下两步发布：
-
-### 1️⃣ 更新到 GitHub
-
-```bash
-git add .
-git commit -m "v0.2.0 更新说明"
-git push
-```
-
-### 2️⃣ 发布到 PyPI
-
-```bash
-# 1. 修改 pyproject.toml 中的 version（如 "0.1.0" → "0.2.0"）
-
-# 2. 构建 + 上传（需 PyPI API Token）
-python -m build
-twine upload dist/* --username __token__ --password 你的TOKEN
-
-# 3. 更新后用户执行升级
-pip install --upgrade pairpulse
-```
-
-> 💡 PyPI API Token 在 pypi.org → Account settings → API tokens 创建。Token 只需要创建一次，之后每次上传都能复用。
 
 ---
 

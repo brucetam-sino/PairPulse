@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pairpulse"
-version = "0.1.1"
+version = "0.1.2"
 description = "购物篮关联分析工具 - 输入 Excel 订单数据，自动输出商品关联规则 + 业务策略建议"
 readme = "README.md"
 requires-python = ">=3.9"
